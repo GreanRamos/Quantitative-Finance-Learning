@@ -331,4 +331,20 @@ ggplotly(p)
 
 ### Work To Go - Add Action Items for Implementation of Weights ### 
 
+# Actions to implement Minimum Variance Portfolio
+percentACT_VAR <- min_var[,0:length(stocks)] - t(assetWeights) #deltas needed to rebalance portfolio, shown in percentages
+dollarACT_VAR <- percentACT_VAR * as.numeric(todayAsset) #convert to dollars for trades needed to rebalance each asset
+VARexcess <- todayValue - (sum(as.numeric(todayAsset) + dollarACT_VAR)) #find leftover cash after rebalance
+
+print(dollarACT_VAR) #show in console for cash trades that need to be performed
+print(paste("New Available Cash as Excess:", VARexcess))
+
+
+# Actions to implement Tangency Portfolio
+percentACT_SR <- max_sr[,0:length(stocks)] - t(assetWeights) #deltas needed to rebalance portfolio, shown in percentages
+dollarACT_SR <- percentACT_SR * as.numeric(todayAsset) #convert to dollars for trades needed to rebalance each asset
+SRexcess <- todayValue - (sum(as.numeric(todayAsset) + dollarACT_SR)) #find leftover cash after rebalance
+
+print(dollarACT_SR) #show in console for cash trades that need to be performed
+print(paste("New Available Cash as Excess:", SRexcess))
 
