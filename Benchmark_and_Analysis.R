@@ -89,7 +89,8 @@ pie(assetWeights[,1:ncol(assetWeights)], labels = paste(paste(rownames(assetWeig
 
 ################## Calculate Asset Weights for ONLY Invested Capital  ################## 
 
-pie.baselineWeights <- as.numeric(positions[3,]) / sum(as.numeric(positions[3,]))
+baselineWeights <- as.numeric(positions[3,]) / sum(as.numeric(positions[3,]))
+pie.baselineWeights <- baselineWeights
 names(pie.baselineWeights) <- stocks
 
 dev.new()
