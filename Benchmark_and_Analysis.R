@@ -332,19 +332,15 @@ ggplotly(p)
 ### Work To Go - Add Action Items for Implementation of Weights ### 
 
 # Actions to implement Minimum Variance Portfolio
-percentACT_VAR <- min_var[,0:length(stocks)] - t(assetWeights) #deltas needed to rebalance portfolio, shown in percentages
-dollarACT_VAR <- percentACT_VAR * as.numeric(todayAsset) #convert to dollars for trades needed to rebalance each asset
-VARexcess <- todayValue - (sum(as.numeric(todayAsset) + dollarACT_VAR)) #find leftover cash after rebalance
 
-print(dollarACT_VAR) #show in console for cash trades that need to be performed
-print(paste("New Available Cash as Excess:", VARexcess))
+varBASELINE_CASH <- min_var[,0:length(stocks)] * todayValue #New weights * current portfolio value
+varTRADES <- varBASELINE_CASH - as.numeric(todayAsset) #Trades that must be performed for rebalance
 
+print(varTRADES) #Show trades in cash value that must be performed to rebalance portfolio
 
 # Actions to implement Tangency Portfolio
-percentACT_SR <- max_sr[,0:length(stocks)] - t(assetWeights) #deltas needed to rebalance portfolio, shown in percentages
-dollarACT_SR <- percentACT_SR * as.numeric(todayAsset) #convert to dollars for trades needed to rebalance each asset
-SRexcess <- todayValue - (sum(as.numeric(todayAsset) + dollarACT_SR)) #find leftover cash after rebalance
+srBASELINE_CASH <- max_sr[,0:length(stocks)] * todayValue #New weights * current portfolio value
+srTRADES <- srBASELINE_CASH - as.numeric(todayAsset) #Trades that must be performed for rebalance
 
-print(dollarACT_SR) #show in console for cash trades that need to be performed
-print(paste("New Available Cash as Excess:", SRexcess))
+print(srTRADES) #Show trades in cash value that must be performed to rebalance portfolio
 
