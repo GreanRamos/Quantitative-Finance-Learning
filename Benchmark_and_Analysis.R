@@ -166,7 +166,7 @@ print(strSRcustom)
 
 ################## High Level Compare to Benchmark ################## 
 
-benchmark <- getSymbols('^GSPC', from='2020-04-13', auto.assign = F)[,6] #Import S&P daily adjusted prices
+benchmark <- getSymbols('^GSPC', from = rownames(as.data.frame(portfolioPercentReturn))[1], auto.assign = F)[,6] #Import S&P daily adjusted prices
 benchRTN <- na.omit(diff(log(benchmark))) #ROC finds the daily change/returns
 
 # 1 - Beta: measure of volatility against a benchmark (*Daily Figure*)
